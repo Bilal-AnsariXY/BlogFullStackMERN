@@ -12,7 +12,7 @@ export default function Navbar() {
   // Logout handler
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:4001/api/users/logout", {
+      await axios.get("https://blogappfullstackmern.onrender.com/users/logout", {
         withCredentials: true,
       });
       setMyPro(null);

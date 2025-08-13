@@ -13,7 +13,7 @@ export default function Sidebar({ setComponent, setMyPro ,myPro}) {
 
     const handleLogout = async () => {
         try {
-            await axios.get('http://localhost:4001/api/users/logout', { withCredentials: true });
+            await axios.get('https://blogappfullstackmern.onrender.com/users/logout', { withCredentials: true });
             setMyPro(null);
             navigate('/');
         } catch (err) {

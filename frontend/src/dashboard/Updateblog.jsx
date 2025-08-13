@@ -41,7 +41,7 @@ export default function UpdateBlog({ updateId ,setComponent}) {
       if (blogPhoto) form.append("blogPhoto", blogPhoto);
 
       const res = await axios.put(
-        `http://localhost:4001/api/blogs/update/${updateId}`,
+        `https://blogappfullstackmern.onrender.com/blogs/update/${updateId}`,
         form,
         {
           withCredentials: true,
