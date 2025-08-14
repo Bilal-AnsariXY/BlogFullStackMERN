@@ -9,8 +9,8 @@ import cors from 'cors';
 dotenv.config();
 const app = express();
 app.use(cors({
-    origin: "http://localhost:5173", 
-    credentials: true
+  origin: ["http://localhost:5173", "https://blog-full-stack-mern-mlmol041x-bilal-ansaris-projects-b5a850b0.vercel.app/"],
+  credentials:true,
 }));
 const mongoUrl = process.env.MONGO_URL;
 const port = process.env.PORT || 4001;
