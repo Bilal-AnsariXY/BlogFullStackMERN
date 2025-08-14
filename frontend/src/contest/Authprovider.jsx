@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie'
 export const AuthContest = createContext();
-
+import { axiosInstance } from '../../axios';
 function Authprovider({ children }) {
     const [blogs, setBlogs] = useState();
     const [users, setUsers] = useState();
@@ -14,10 +14,10 @@ function Authprovider({ children }) {
         try {
 
 
-            const { data } = await axios.get(
-                'http://localhost:4001/api/users/my-profile',
+            const { data } = await axiosInstance.get('/users/my-profile',
                 { withCredentials: true }
             );
+            // /users/my-profile
             setMyPro(data);
 
         } catch (err) {
@@ -30,7 +30,7 @@ function Authprovider({ children }) {
 
     const fetchBlogs = async () => {
         try {
-            const { data } = await axios.get('http://localhost:4001/api/blogs/all-blogs');
+            const { data } = await axiosInstance.get('/blogs/all-blogs');
             setBlogs(data);
         } catch (err) {
             console.log('Error fetching blogs:', err);
@@ -39,7 +39,7 @@ function Authprovider({ children }) {
 
     const fetchUsers = async () => {
         try {
-            const { data } = await axios.get('http://localhost:4001/api/users/admins');
+            const { data } = await axiosInstance.get('/users/admins');
             setUsers(data);
         } catch (err) {
             console.log('Error fetching users:', err);

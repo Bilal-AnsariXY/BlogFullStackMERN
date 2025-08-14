@@ -4,7 +4,7 @@ import React from 'react';
 import { useAuth } from '../contest/Authprovider';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-
+import { axiosInstance } from '../../axios';
 export default function Sidebar({ setComponent }) {
   const { myPro, setMyPro, loading } = useAuth();
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export default function Sidebar({ setComponent }) {
 
   const handleLogout = async () => {
     try {
-      await axios.get('http://localhost:4001/api/users/logout', { withCredentials: true })
+      await axiosInstance.get('/users/logout', { withCredentials: true })
         .catch(err => {
           // Ignore 400 errors from backend
           if (err.response && err.response.status === 400) return;

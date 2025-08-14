@@ -4,7 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useAuth } from "../contest/Authprovider.jsx";
 import { Link, Navigate } from "react-router-dom";
-
+import { axiosInstance } from "../../axios.js";
 export default function Login() {
   const { myPro, setMyPro, myProfile } = useAuth();
   const [formData, setFormData] = useState({ role: "", email: "", password: "" });
@@ -17,8 +17,8 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://localhost:4001/api/users/login",
+      const res = await axiosInstance.post(
+        "/users/login",
         { ...formData, role: formData.role || "user" },
         { withCredentials: true }
       );

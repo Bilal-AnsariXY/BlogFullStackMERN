@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useAuth } from "../contest/Authprovider";
-
+import { axiosInstance } from "../../axios";
 export default function UpdateBlog({ updateId ,setComponent}) {
   const { blogs,fetchBlogs } = useAuth();
 
@@ -40,8 +40,8 @@ export default function UpdateBlog({ updateId ,setComponent}) {
       form.append("about", formData.about);
       if (blogPhoto) form.append("blogPhoto", blogPhoto);
 
-      const res = await axios.put(
-        `http://localhost:4001/api/blogs/update/${updateId}`,
+      const res = await axiosInstance.put(
+        `/blogs/update/${updateId}`,
         form,
         {
           withCredentials: true,

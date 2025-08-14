@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useAuth } from "../contest/Authprovider";
 import toast from "react-hot-toast";
-
+import { axiosInstance } from "../../axios";
 export default function Myblogs({ myPro ,setComponent,setUpdateId}) {
   const { blogs, fetchBlogs } = useAuth(); // ✅ using blogs from context
 
@@ -33,8 +33,8 @@ export default function Myblogs({ myPro ,setComponent,setUpdateId}) {
   // Delete Blog Handler
   const handleDelete = async (blogId) => {
     try {
-      const res = await axios.delete(
-        `http://localhost:4001/api/blogs/delete/${blogId}`,
+      const res = await axiosInstance.delete(
+        `/blogs/delete/${blogId}`,
         { withCredentials: true } // ✅ send cookies for auth
       );
       toast.success(res.data?.message || "Blog deleted successfully");

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useAuth } from "../contest/Authprovider";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { axiosInstance } from "../../axios";
 export default function CreateBlog({myPro,setComponent}) {
   const {fetchBlogs} = useAuth();
   const [formData, setFormData] = useState({
@@ -42,7 +43,7 @@ export default function CreateBlog({myPro,setComponent}) {
       form.append("blogPhoto", formData.blogPhoto);
       form.append("about", formData.about);
 
-      await axios.post("http://localhost:4001/api/blogs/create", form, {
+      await axiosInstance.post("/blogs/create", form, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" }
       });

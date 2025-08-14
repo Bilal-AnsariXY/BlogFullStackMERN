@@ -5,14 +5,14 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { useAuth } from "../contest/Authprovider";
 import axios from "axios";
 import toast from "react-hot-toast";
-
+import { axiosInstance } from "../../axios";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { myPro, setMyPro } = useAuth();
 
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:4001/api/users/logout", { withCredentials: true });
+      await axiosInstance.get("/users/logout", { withCredentials: true });
       setMyPro(null);
       toast.success("Logged out successfully");
     } catch (err) {

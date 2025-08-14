@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
-
+// import { axiosInstance } from "../../axios";
 export default function ContactUs() {
   const [formData, setFormData] = useState({
     name: "",

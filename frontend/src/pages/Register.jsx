@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { axiosInstance } from "../../axios";
 import { useAuth } from "../contest/Authprovider";
 export default function Register() {
   const navigate = useNavigate();
@@ -42,8 +43,8 @@ export default function Register() {
       }
 
       // Send to backend
-      const response = await axios.post(
-        "http://localhost:4001/api/users/register",
+      const response = await axiosInstance.post(
+        "/users/register",
         data,
         {
           headers: {
