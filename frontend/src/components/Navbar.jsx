@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
@@ -9,12 +10,9 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { myPro, setMyPro } = useAuth();
 
-  // Logout handler
   const handleLogout = async () => {
     try {
-      await axios.get("https://blogappfullstackmern.onrender.com/users/logout", {
-        withCredentials: true,
-      });
+      await axios.get("http://localhost:4001/api/users/logout", { withCredentials: true });
       setMyPro(null);
       toast.success("Logged out successfully");
     } catch (err) {
@@ -32,10 +30,7 @@ export default function Navbar() {
         </div>
 
         {/* Hamburger button */}
-        <button
-          className="md:hidden text-gray-700 text-2xl"
-          onClick={() => setIsOpen(!isOpen)}
-        >
+        <button className="md:hidden text-gray-700 text-2xl" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <FaTimes /> : <FaBars />}
         </button>
 
@@ -52,41 +47,16 @@ export default function Navbar() {
         <div className="hidden md:flex gap-3">
           {!myPro?._id ? (
             <>
-              <Link
-                to="/register"
-                className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
-              >
-                Register
-              </Link>
-              <Link
-                to="/login"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded"
-              >
-                Login
-              </Link>
+              <Link to="/register" className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded">Register</Link>
+              <Link to="/login" className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded">Login</Link>
             </>
           ) : myPro.role === "admin" ? (
             <>
-              <Link
-                to="/dashbord"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded"
-              >
-                Dashboard
-              </Link>
-              <button
-                onClick={handleLogout}
-                className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
-              >
-                Logout
-              </button>
+              <Link to="/dashbord" className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded">Dashboard</Link>
+              <button onClick={handleLogout} className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">Logout</button>
             </>
           ) : (
-            <button
-              onClick={handleLogout}
-              className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
-            >
-              Logout
-            </button>
+            <button onClick={handleLogout} className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">Logout</button>
           )}
         </div>
       </div>
@@ -104,44 +74,16 @@ export default function Navbar() {
           <div className="flex flex-col gap-3 w-40">
             {!myPro?._id ? (
               <>
-                <Link
-                  to="/register"
-                  className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-center"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Register
-                </Link>
-                <Link
-                  to="/login"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-center"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Login
-                </Link>
+                <Link to="/register" className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-center" onClick={() => setIsOpen(false)}>Register</Link>
+                <Link to="/login" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-center" onClick={() => setIsOpen(false)}>Login</Link>
               </>
             ) : myPro.role === "admin" ? (
               <>
-                <Link
-                  to="/dashbord"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-center"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Dashboard
-                </Link>
-                <button
-                  onClick={() => { handleLogout(); setIsOpen(false); }}
-                  className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-center"
-                >
-                  Logout
-                </button>
+                <Link to="/dashbord" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-center" onClick={() => setIsOpen(false)}>Dashboard</Link>
+                <button onClick={() => { handleLogout(); setIsOpen(false); }} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-center">Logout</button>
               </>
             ) : (
-              <button
-                onClick={() => { handleLogout(); setIsOpen(false); }}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-center"
-              >
-                Logout
-              </button>
+              <button onClick={() => { handleLogout(); setIsOpen(false); }} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-center">Logout</button>
             )}
           </div>
         </div>

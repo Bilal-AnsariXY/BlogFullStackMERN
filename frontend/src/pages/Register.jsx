@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useAuth } from "../contest/Authprovider";
 export default function Register() {
+  const navigate = useNavigate();
+  const {fetchUsers} = useAuth()
   const [formData, setFormData] = useState({
     role: "",
     name: "",
@@ -52,7 +55,7 @@ export default function Register() {
 
       console.log(response.data);
       toast.success(response.data.message ||'user registerd')
-
+      
       // Reset form
       setFormData({
         role: "",
@@ -63,6 +66,8 @@ export default function Register() {
         education: "",
         file: null,
       });
+      fetchUsers();
+      navigate('/login');
     } catch (err) {
       console.log("error in frontend register", err);
       toast.error(response.data.message ||'user not registered')

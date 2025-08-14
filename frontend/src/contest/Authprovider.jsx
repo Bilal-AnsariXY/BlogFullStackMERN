@@ -15,7 +15,7 @@ function Authprovider({ children }) {
 
 
             const { data } = await axios.get(
-                'https://blogappfullstackmern.onrender.com/users/my-profile',
+                'http://localhost:4001/api/users/my-profile',
                 { withCredentials: true }
             );
             setMyPro(data);
@@ -30,7 +30,7 @@ function Authprovider({ children }) {
 
     const fetchBlogs = async () => {
         try {
-            const { data } = await axios.get('https://blogappfullstackmern.onrender.com/blogs/all-blogs');
+            const { data } = await axios.get('http://localhost:4001/api/blogs/all-blogs');
             setBlogs(data);
         } catch (err) {
             console.log('Error fetching blogs:', err);
@@ -39,7 +39,7 @@ function Authprovider({ children }) {
 
     const fetchUsers = async () => {
         try {
-            const { data } = await axios.get('https://blogappfullstackmern.onrender.com/users/admins');
+            const { data } = await axios.get('http://localhost:4001/api/users/admins');
             setUsers(data);
         } catch (err) {
             console.log('Error fetching users:', err);
@@ -53,7 +53,7 @@ function Authprovider({ children }) {
     }, []);
 
     return (
-        <AuthContest.Provider value={{ blogs, users, myPro, setMyPro, loading,fetchBlogs }}>
+        <AuthContest.Provider value={{ blogs, users, myPro,myProfile,fetchUsers, setMyPro, loading,fetchBlogs }}>
             {children}
         </AuthContest.Provider>
     );

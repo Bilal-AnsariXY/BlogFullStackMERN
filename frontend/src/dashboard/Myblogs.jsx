@@ -34,7 +34,7 @@ export default function Myblogs({ myPro ,setComponent,setUpdateId}) {
   const handleDelete = async (blogId) => {
     try {
       const res = await axios.delete(
-        `https://blogappfullstackmern.onrender.com/blogs/delete/${blogId}`,
+        `http://localhost:4001/api/blogs/delete/${blogId}`,
         { withCredentials: true } // ✅ send cookies for auth
       );
       toast.success(res.data?.message || "Blog deleted successfully");

@@ -42,7 +42,7 @@ export default function CreateBlog({myPro,setComponent}) {
       form.append("blogPhoto", formData.blogPhoto);
       form.append("about", formData.about);
 
-      await axios.post("https://blogappfullstackmern.onrender.com/blogs/create", form, {
+      await axios.post("http://localhost:4001/api/blogs/create", form, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" }
       });
