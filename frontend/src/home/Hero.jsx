@@ -1,7 +1,10 @@
 import React from "react";
 import { useAuth } from "../contest/Authprovider";
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
+import { clicked } from "../components/Clicked";
+
 export default function Hero() {
+  const navigate = useNavigate();
   const { blogs } = useAuth();
   // console.log("hello blogs", blogs);
 
@@ -19,7 +22,7 @@ export default function Hero() {
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {displayedBlogs.map((blog) => (
-            <Link to={'/'} key={blog._id}>
+            <div onClick={()=>{clicked(blog._id,navigate)}} key={blog._id}>
               <div
                 key={blog._id}
                 className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg hover:scale-[1.02] transition-transform duration-300"
@@ -55,7 +58,7 @@ export default function Hero() {
                   </p>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       )}

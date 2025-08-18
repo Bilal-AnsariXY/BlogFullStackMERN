@@ -21,7 +21,7 @@ export default function Trending() {
         <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
           {displayedBlogs.map((blog) => (
             <Link
-              to={`/blog/${blog._id}`}
+              to={`/blogs/${blog._id}`}
               key={blog._id}
               className="flex-shrink-0 w-64"
             >

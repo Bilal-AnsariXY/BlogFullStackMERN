@@ -9,10 +9,11 @@ import Login from '../src/pages/Login.jsx'
 import Register from '../src/pages/Register.jsx'
 import Home from '../src/components/Home.jsx'
 import Footer from '../src/components/Footer.jsx'
-// import { useAuth } from './contest/Authprovider.jsx'
+import BlogsContent from './pages/BlogsContent.jsx'
 import { Toaster } from 'react-hot-toast';
 
 import { Routes, Route, useLocation } from 'react-router-dom'
+import User from './components/User.jsx'
 const App = () => {
   const location = useLocation();
   const hideNavbarFooter = ["/dashbord", "/login", "/register"].includes(location.pathname);
@@ -33,6 +34,8 @@ const App = () => {
         <Route path='/dashbord' element={<Dashbord />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
+        <Route path='/blogs/:id' element={<BlogsContent/>}></Route>
+        <Route path='user/:id' element= {<User/>}></Route>
       </Routes>
       <Toaster/>
       {
