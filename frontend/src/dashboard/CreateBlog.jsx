@@ -4,7 +4,7 @@ import { useAuth } from "../contest/Authprovider";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../axios";
-export default function CreateBlog({myPro,setComponent}) {
+export default function CreateBlog({setComponent}) {
   const {fetchBlogs,myPro} = useAuth();
   // if (!myPro) {
   //   return (
