@@ -5,7 +5,14 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../axios";
 export default function CreateBlog({myPro,setComponent}) {
-  const {fetchBlogs} = useAuth();
+  const {fetchBlogs,myPro} = useAuth();
+  // if (!myPro) {
+  //   return (
+  //     <p className="text-center mt-10 text-red-500 font-semibold">
+  //       User is not logged in Login first.
+  //     </p>
+  //   );
+  // }
   const [formData, setFormData] = useState({
     title: "",
     category: "",

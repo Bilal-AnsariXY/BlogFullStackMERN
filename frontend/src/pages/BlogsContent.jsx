@@ -12,7 +12,13 @@ export default function BlogContent() {
 
   // Find blog by id
   const blog = blogList.find((b) => b._id === id);
-
+  if (!myPro) {
+    return (
+      <p className="text-center mt-10 text-red-500 font-semibold">
+        User is not logged in Login first.
+      </p>
+    );
+  }
   if (!blog) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen text-gray-600">

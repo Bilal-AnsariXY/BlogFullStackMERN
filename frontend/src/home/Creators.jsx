@@ -3,12 +3,12 @@ import { useAuth } from "../contest/Authprovider";
 import { Link } from "react-router-dom";
 
 export default function PopularCreators() {
-  const { users } = useAuth();
+  const { users ,myPro} = useAuth();
   const allUsers = users || [];
 
   // Filter only admins
   const admins = allUsers.filter((user) => user.role === "admin");
-
+  
   return (
     <div className="bg-blue-50 px-4 sm:px-6 pt-6 pb-6">
       <h2 className="text-xl sm:text-2xl font-bold mb-4">Popular Creators</h2>

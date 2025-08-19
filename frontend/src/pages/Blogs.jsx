@@ -2,12 +2,23 @@ import React from "react";
 import { useAuth } from "../contest/Authprovider";
 import { useNavigate } from "react-router-dom";
 import { clicked } from "../components/Clicked";
+
 export default function Blogs() {
   const { blogs, myPro } = useAuth();
   const navigate = useNavigate();
+
+  // If user not logged in
+  if (!myPro) {
+    return (
+      <p className="text-center mt-10 text-red-500 font-semibold">
+        User is not logged in Login first.
+      </p>
+    );
+  }
+
   // Ensure blogs is always an array
   const blogList = Array.isArray(blogs) ? blogs : blogs?.allBlogs || [];
- 
+
   if (blogList.length === 0) {
     return (
       <p className="text-center mt-10 text-gray-500">
@@ -17,13 +28,14 @@ export default function Blogs() {
   }
 
   return (
-    <div className="p-4 bg-gray-50 min-h-screen" >
+    <div className="p-4 bg-gray-50 min-h-screen">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">All Blogs</h2>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" >
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {blogList.map((blog) => (
           <div
-            
-            onClick={()=>{clicked(blog._id,navigate)}}
+            onClick={() => {
+              clicked(blog._id, navigate);
+            }}
             key={blog._id}
             className="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow flex flex-col hover:cursor-pointer"
           >

@@ -4,9 +4,15 @@ import { useAuth } from "../contest/Authprovider.jsx";
 
 export default function User() {
   const { id } = useParams();
-  const { users } = useAuth();
+  const { users ,myPro} = useAuth();
   const navigate = useNavigate();
-
+  if (!myPro) {
+    return (
+      <p className="text-center mt-10 text-red-500 font-semibold">
+        User is not logged in Login first.
+      </p>
+    );
+  }
   const allUsers = users || [];
   const user = allUsers.find((u) => u._id === id);
 

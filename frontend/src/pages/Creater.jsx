@@ -3,9 +3,15 @@ import { useAuth } from "../contest/Authprovider.jsx";
 import { Link } from "react-router-dom";
 
 export default function Creator() {
-  const { users } = useAuth();
+  const { users,myPro } = useAuth();
   const allUsers = users || [];
-
+   if (!myPro) {
+    return (
+      <p className="text-center mt-10 text-red-500 font-semibold">
+        User is not logged in Login first.
+      </p>
+    );
+  }
   // Filter only admins
   const admins = allUsers.filter((user) => user.role === "admin");
 
